@@ -1,0 +1,44 @@
+{% extends 'base/base.html' %}
+{% block title %} သင်ခန်းစာများ {% endblock %}
+{% block content %}
+  <div class="container-fluid">
+    <div class="row p-3">
+      <div class="col-3 border">
+        <h4 class="d-flex justify-content-center">Hash tag</h4>
+        {# for tag in tags #}
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item"><a class="text-decoration-none" href="{#% url ''%#}">@tag</a></li>
+      </ul>
+        {# endfor #}
+      </div>
+      <div class="col pl-1">
+        {#% for course in courses %#}
+        <div class="card border-light mb-3 shadow-sm mb-5 bg-white rounded" style="width: 25rem;">
+          <h5 class="card-header">{#% course.name %#}သင်ခန်းစာခေါင်းစည်း။</h5>
+          <div class="card-body">
+            <div class="d-flex justify-content-between">
+              <small class="card-subtitle mb-2 text-muted">{#% course.coast%#} ရေးသားသူ</small>
+              <small class="card-subtitle mb-2 text-muted" >{#% course.date%#} နေ့စွဲ</small>
+            </div>
+            <ul class="list-group list-group-flush">
+              {#% for topics in course.topic_set %#}
+                {#% for topic in topics|slice:":3" %#}
+              <li class="list-group-item">{{ forloop.counter }}{#% topic.headline %#}Topic ခေါင်းစဥ်များ</li>
+              <li class="list-group-item">A second item</li>
+              <li class="list-group-item">A third item</li>
+                {#% endfor %#}
+              {#% endfor %#}
+            </ul>
+            <a href="#" class="text-decoration-none text-end">See more . . .</a>
+          </div>
+        </div>
+        {#% endfor %#}
+        <p>{#% course.topic|slice:150 %#}</p>
+      </div>
+      <div class="col-3">
+
+      </div>
+      </div>
+    </div>
+
+{% endblock %}
