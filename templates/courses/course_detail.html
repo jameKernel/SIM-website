@@ -1,0 +1,63 @@
+{%extends 'base/base.html'%}
+{% block title %} {{course.title}} Course | SIM {% endblock %}
+{% block content %}
+<div class="container-fluid">
+  <div class="row pt-3">
+    <div class="col-3 text-center">
+      <div class=" card bg-light flex-column" data-bs-spy="scroll" data-bs-offset="0" tabindex="0">
+          <h5 class="pt-2 card-header">{{ course.title }} | Topics</h5>
+
+        <div class="card-body">
+          <ul class="list-group list-group-flush">
+            {% for topic in course.topic_set.all %}
+            <li class="list-group-item">
+              <small>
+                <a class="text-info" href="">{{ topic.headline }}</a>
+              </small>
+            </li>
+            {% endfor %}
+          </ul>
+        </div>        
+      </div>
+    </div>
+    <section class="col">
+      {% for topic in course.topic_set.all %}
+      <div class="card mb-3">
+        <div class="card-header">
+          <a class="" href="{% url 'topic_detail' topic.id %}">{{ topic.headline }}</a>
+          <div>
+            <small class="card-subtitle mb-2 blockquote-footer text-muted">
+              {{ course.coast }},  {{ course.date|date:"d M, Y" }}
+            </small>
+          </div>
+
+        </div>
+        <div class="card-body">
+          {{ topic.contents|slice:330 }}
+          <div>
+            <b>
+              <a href="{# '#}" class="text-dark">see more . . .</a>
+            </b>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+        <pre>
+        last-updated 24-8-2022
+        Making: bootstrap scrollspy, middle content 'Hello World',
+        Do To : topics_list.html, topic_detail.html,</pre>
+    </section>
+    <div class="col-2">
+      <h4 class="text-center">Categories</h4>
+      <ul class="list-group list-group-flush">
+        {% for category in categories %}
+        <li class="list-group-item">
+          <small><a class="text-success" href="">{{ category.name }}</a></small>
+        </li>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+</div>
+{% endblock%}
+

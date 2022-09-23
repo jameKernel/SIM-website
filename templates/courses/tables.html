@@ -1,0 +1,36 @@
+<table class="table">
+  <thead>
+    <tr>
+      <th class="text-muted" scope="col">#</th>
+      <th scope="col">Topic</th>
+      <th scope="col">Description</th>
+      <th scope="col">Category</th>
+    </tr>
+  </thead>
+  {% for topic in course.topic_set.all|slice:2 %}
+  <tbody>
+    <tr>
+      <th scope="row">
+          <small class="text-muted">{{ forloop.counter }}</small>
+      </th>
+      <td>
+        <b>
+          <a class="" href="{#% url 'topic_detail' topic.id %#}" style="color: #ffb3b3;">
+            <small class="">{{ topic.headline }}</small>
+          </a>
+        </b>
+      </td>
+      <td>
+        <small style="font-size: 11px;">{{ topic.contents|slice:150 }}</small>
+      </td>
+      <td>
+      {% for category in categories|slice:2 %}
+      <a class="" href="{# url 'category' category.id #}" style="color: #72bdf3">
+        <small style="font-size: 11px;">{{ category.name }},</small>
+      </a>
+      {% endfor %}
+      </td>
+    </tr>
+  </tbody>
+  {% endfor %}
+</table>
