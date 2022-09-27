@@ -21,7 +21,7 @@
         </b>
       </td>
       <td>
-        <small style="font-size: 11px;">{{ topic.contents|slice:150 }}</small>
+        <small style="font-size: 11px;">{{ topic.contents|safe|slice:150 }}</small>
       </td>
       <td>
       {% for category in categories|slice:2 %}

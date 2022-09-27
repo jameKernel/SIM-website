@@ -1,0 +1,53 @@
+{%extends 'base/base.html'%}
+{% block title %} {{category.name}} Course | SIM {% endblock %}
+{% block content %}
+<div class="container-fluid">
+  <div class="row pt-3">
+    <div class="col-3 text-center">
+      <div class=" card bg-light flex-column" data-bs-spy="scroll" data-bs-offset="0" tabindex="0">
+          <h5 class="pt-2 card-header">{{ course.title }} | Topics</h5>
+        <div class="card-body">
+          <ul class="list-group list-group-flush">
+            {% for topic in course.topic_set.all %}
+            <li class="list-group-item">
+              <small>
+                <a class="text-info" href="{% url 'topic_detail' topic.id %}">{{ topic.headline }}</a>
+              </small>
+            </li>
+            {% endfor %}
+          </ul>
+        </div>
+      </div>
+    </div>
+    <section class="col">
+      {% for topic in object_list %}
+      <div class="card mb-3">
+        <header class="card-header">
+          <a class="" href="{% url 'topic_detail' topic.id %}">{{ topic.headline }}</a>
+          <div>
+            <small class="card-subtitle mb-2 blockquote-footer text-muted">
+              {{ course.coast }},  {{ course.date|date:"d M, Y" }}
+            </small>
+          </div>
+        </header>
+        <article class="card-body">
+            {{ topic.contents | truncatechars:400}}
+        </article>
+      </div>
+      {% endfor %}
+      {% include 'index/paginator.html' %}
+    </section>
+    <div class="col-2">
+      <h4 class="text-center">Categories</h4>
+      <ul class="list-group list-group-flush">
+        {% for category in categories %}
+        <li class="list-group-item">
+          <small><a class="text-success" href="">{{ category.name }}</a></small>
+        </li>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+</div>
+{% endblock%}
+

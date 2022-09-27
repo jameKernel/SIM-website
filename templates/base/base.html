@@ -11,22 +11,19 @@
     <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
     <title>{% block title %}{% endblock %}</title>
     <style>
+        body{
+        font-family: 'Poppins';
+        }
         body a{
           text-decoration: none;
         }
     </style>
 </head>
-<style type="text/css">
-  body{
-    font-family: 'Poppins';
-    position: relative;
-  }
-</style>
 <body>
     <nav class="navbar navbar-expand-lg" style="background-color: #e3f2fd;">
   <div class="container-fluid">
     <a class="navbar-brand" href="#">
-        <img src="{% static 'docs/logo.jpg' %}" alt="" width="30" height="24" class="d-inline-block align-text-top">
+        <img src="{% static '/docs/logo.jpg' %}" alt="" width="30" height="24" class="d-inline-block align-text-top">
         SIM
     </a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
@@ -60,12 +57,15 @@
     </div>
   </div>
 </nav>
-    {% block content %}{% endblock %}
+    {% block content %}
+    {% endblock %}
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js"
             integrity="sha384-Xe+8cL9oJa6tN/veChSP7q+mnSPaj5Bcu9mPX5F5xIGE0DVittaqT5lorf0EI7Vk"
             crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.min.js"
             integrity="sha384-ODmDIVzN+pFdexxHEHFBQH3/9/vQ9uori45z4JjnFsRydbmQbmL5t1tQ0culUzyK"
             crossorigin="anonymous"></script>
+    <script type="text/javascript" src="{% static 'ckeditor/ckeditor-init.js' %}"></script>
+    <script type="text/javascript" src="{% static 'ckeditor/ckeditor/ckeditor.js' %}"></script>
 </body>
 </html>

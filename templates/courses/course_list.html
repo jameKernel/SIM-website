@@ -1,0 +1,39 @@
+{% extends 'base/base.html' %}
+{% block title %} သင်ခန်းစာများ {% endblock %}
+{% block content %}
+  <main class="container-fluid">
+    <div class="row p-3">
+      <div class="col-2 border rounded">
+        <h4 class="d-flex justify-content-center pt-2">Browser</h4>
+        <hr>
+        {% for category in categories %}
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item"><a class="" href="{% url 'courses' %}?q={{ category.name }}">@{{ category.name }}</a></li>
+      </ul>
+        {% endfor %}
+      </div>
+      <section class="col pl-1">
+        {% for course in courses %}
+        <div class="card border-light mb-3 shadow-sm mb-5 bg-white rounded">
+          <h5 class="card-header">{{ course.title }}</h5>
+          <div class="card-body">
+            <div class="d-flex justify-content-between">
+              <small class="card-subtitle mb-2 text-muted">{{ course.coast }}</small>
+              <small class="card-subtitle mb-2 text-muted" >{{ course.date|date:"d M, Y" }}</small>
+            </div>
+              {% include 'courses/tables.html' %}
+          </div>
+          <div class="card-footer">
+            <a href="{% url 'course_detail' course.id %}" class="link-info">See more . . .</a>
+          </div>
+        </div>
+        {% endfor %}
+        {% include 'index/paginator.html' %}
+      </section>
+      <div class="col-2">
+
+      </div>
+      </div>
+    </main>
+
+{% endblock %}

@@ -1,8 +1,31 @@
-{% block content%}
-{{ topic.headline }}
-{{ topic.contents }}
-{{ topic.youtube_link}}
-<div>
- <iframe>{{ topic.code_field }}</iframe>
+{% extends 'base/base.html' %}
+{% load embed_video_tags %}
+{% block content %}
+<div class="container-fluid">
+    <div class="flex-row p-2 mr-2" style="display: flex;">
+        <div class="col-2 text-center">
+            <div class="card bg-light flex-column" data-bs-spy="scroll" data-bs-offset="0" tabindex="0">
+                <h5 class="pt-2 card-header"> {{ topic.course.title }}</h5>
+                <div class="card-body">
+                    <ul class="list-group list-group-flush">
+                        {% for t in topics.objects.all %}
+                        <li class="list-group-item">
+                            <small><a class="text-info" href="">{{ t.headline }}</a></small>
+                        {% endfor %}
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <article class="col shadow-sm p-4 bg-white rounded" >
+            <h4><center>{{ topic.headline }}</center></h4>
+            <section class="border-top">
+                {{ topic.contents | safe }}
+            </section>
+            <footer class="card-footer p-2 m-1">
+                <a class="btn btn-outline-info mt-3" ></a>
+            </footer>
+        </article>
+    </div>
 </div>
 {% endblock %}
